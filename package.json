@@ -1,0 +1,33 @@
+{
+  "name": "backend-assignment-fampay-reeshi-18",
+  "version": "1.0.0",
+  "description": "Assignment for Backend Engineering Team Applications to FamPay",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --experimental-modules --es-module-specifier-resolution=node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fampay/backend-assignment-fampay-reeshi-18.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fampay/backend-assignment-fampay-reeshi-18/issues"
+  },
+  "homepage": "https://github.com/fampay/backend-assignment-fampay-reeshi-18#readme",
+  "dependencies": {
+    "connect-flash": "^0.1.1",
+    "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "googleapis": "^107.0.0",
+    "mysql": "^2.18.1",
+    "youtube-node": "^1.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}

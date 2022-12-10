@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<head>
+    <title>FamPay Assignment</title>
+    <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="search-container">
+          <input type="text" placeholder="Search through videos" id="search">
+          <button onclick="search()">Submit</button>
+    </div>
+    <div class="search-results">
+        <div>
+            <h2>YT Video Data</h2><br><br>
+            <div class="table-data">
+                <table border="1">
+                    <tr>
+                        <th>Sl no.</th>
+                        <th>Video ID</th>
+                        <th>Title</th>
+                        <th>Publish Time</th>
+                        <th>Description</th>
+                        <th>Thumbnail URL</th>
+                        <th>Channel ID</th>
+                        <th>Channel Name</th>
+                    </tr>
+                    <% if(videoData.length != 0){ var i=startIndex; videoData.forEach(function(data){ %>
+                        <tr>
+                            <td>
+                                <%=i; %> 
+                            </td>
+                            <td>
+                                <%=data.videoId %>
+                            </td>
+                            <td>
+                                <%=data.title %>
+                            </td>
+                            <td>
+                                <%=data.time %>
+                            </td>
+                            <td>
+                                <%=data.description %>
+                            </td>
+                            <td>
+                                <%=data.thumbnail %>
+                            </td>
+                            <td>
+                                <%=data.channel_id %>
+                            </td>
+                            <td>
+                                <%=data.channel_name %>
+                            </td>
+                        </tr>
+                        <% i++; }) %>
+                            <% } else{ %>
+                                <tr>
+                                    <td colspan="7">No Data Found</td>
+                                </tr>
+                                <% } %>
+                </table>
+            </div>
+
+            <div class="Pagination">
+                <label>Page Number
+                    <input type="number" id="pageno">
+                </label>
+                <button onclick="getPage()">Go to Page</button>
+                <label>Limit
+                    <input type="number" id="limit">
+                </label>
+            </div>
+        </div>
+    
+    </div>
+    <script>
+        function search() {
+            var query = document.getElementById("search").value;
+            location.href = "/search/?key="+query;
+            $.ajax({
+                type: "GET",
+                url: "/search",
+                data: { key: JSON.parse(JSON.stringify(query)) },
+                success: function (msg) {
+                   
+                }
+            });
+        }
+        function getPage() {
+            var page = document.getElementById("pageno").value || 1;
+            var limit = document.getElementById("limit").value || 15;
+            location.href = "/pagination/?page="+page+"&limit="+limit;
+
+            document.getElementById("pageno").placeholder = page+1;
+            document.getElementById("limit").placeholder = limit+1;
+
+            $.ajax({
+                type: "GET",
+                url: "/pagination",
+                data: { page: JSON.parse(JSON.stringify(page)),
+                        limit: JSON.parse(JSON.stringify(limit))},
+                success: function(msg) {
+
+                }
+            });
+        }
+
+        
+    </script>
+</body>
